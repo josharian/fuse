@@ -344,6 +344,11 @@ const (
 	EIO    = Errno(syscall.EIO)
 	EPERM  = Errno(syscall.EPERM)
 
+	EFBIG        = Errno(syscall.EFBIG)
+	ENAMETOOLONG = Errno(syscall.ENAMETOOLONG)
+	ENOTEMPTY    = Errno(syscall.ENOTEMPTY)
+	EINVAL       = Errno(syscall.EINVAL)
+
 	// EINTR indicates request was interrupted by an InterruptRequest.
 	// See also fs.Intr.
 	EINTR = Errno(syscall.EINTR)
@@ -358,13 +363,17 @@ const (
 const DefaultErrno = EIO
 
 var errnoNames = map[Errno]string{
-	ENOSYS: "ENOSYS",
-	ESTALE: "ESTALE",
-	ENOENT: "ENOENT",
-	EIO:    "EIO",
-	EPERM:  "EPERM",
-	EINTR:  "EINTR",
-	EEXIST: "EEXIST",
+	ENOSYS:       "ENOSYS",
+	ESTALE:       "ESTALE",
+	ENOENT:       "ENOENT",
+	EFBIG:        "EFBIG",
+	ENAMETOOLONG: "ENAMETOOLONG",
+	ENOTEMPTY:    "ENOTEMPTY",
+	EINVAL:       "EINVAL",
+	EIO:          "EIO",
+	EPERM:        "EPERM",
+	EINTR:        "EINTR",
+	EEXIST:       "EEXIST",
 }
 
 // Errno implements Error and ErrorNumber using a syscall.Errno.
