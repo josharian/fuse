@@ -1023,6 +1023,9 @@ func (c *Server) handleRequest(ctx context.Context, node Node, snode *serveNode,
 		return nil
 
 	case *fuse.RemoveRequest:
+		if r.Name == "." || r.Name == ".." {
+			return fuse.EEXIST
+		}
 		n, ok := node.(NodeRemover)
 		if !ok {
 			return fuse.EIO /// XXX or EPERM?
