@@ -1140,8 +1140,8 @@ func (c *Conn) writeToKernel(msg []byte) error {
 	out.Len = uint32(len(msg))
 
 	c.wio.RLock()
-	defer c.wio.RUnlock()
 	nn, err := syscall.Write(c.fd(), msg)
+	c.wio.RUnlock()
 	if err == nil && nn != len(msg) && Debug != nil {
 		Debug(bugShortKernelWrite{
 			Written: int64(nn),
